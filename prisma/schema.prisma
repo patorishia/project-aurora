@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  logo      String?
+  website   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  coupons   Coupon[]
+
+  @@index([name])
+}
+
+model Coupon {
+  id          String    @id @default(cuid())
+  storeId     String
+  title       String
+  description String?
+  code        String?
+  discount    String?
+  url         String
+  expiresAt   DateTime?
+  active      Boolean   @default(true)
+  verified    Boolean   @default(false)
+  source      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@index([storeId])
+  @@index([active])
+  @@index([expiresAt])
+}

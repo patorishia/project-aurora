@@ -1,37 +1,43 @@
+"use client";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { TrendingStoreCard } from "@/components/home/TrendingStoreCard";
 import { HeroSearchBar } from "@/components/home/HeroSearchBar";
 import { HeroTrustBadges } from "@/components/home/HeroTrustBadges";
 import { trendingStores } from "@/constants/home";
 
 export function Hero() {
+  const { messages } = useLanguage();
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
+      className="relative isolate min-h-[calc(100vh-4rem)] overflow-hidden aurora-glow"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,var(--color-muted),transparent)]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        <div className="absolute -top-32 left-[10%] h-72 w-72 rounded-full bg-sky-400/10 blur-3xl" />
+        <div className="absolute top-20 right-[5%] h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-64 w-96 -translate-x-1/2 rounded-full bg-teal-400/10 blur-3xl" />
+      </div>
 
-      <div className="mx-auto flex max-w-3xl flex-col items-center text-center lg:max-w-4xl">
+     <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6 sm:py-28 lg:max-w-4xl lg:py-32">
         <h1
           id="hero-heading"
           className="text-4xl font-semibold tracking-tight text-balance text-foreground sm:text-5xl lg:text-6xl lg:leading-[1.1]"
         >
-          Never pay full price again.
+          {messages.Home.title}
         </h1>
 
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:mt-6 sm:text-xl">
-          Search thousands of verified coupons, deals and cashback offers from
-          the world&apos;s most popular stores.
+           {messages.Home.description}
         </p>
 
         <HeroSearchBar className="mt-10 w-full sm:mt-12" />
 
         <div className="mt-12 w-full sm:mt-14">
           <p className="mb-4 text-sm font-medium text-muted-foreground">
-            Trending stores
+            {messages.Home.trendingStores}
           </p>
           <ul
             aria-label="Trending stores"

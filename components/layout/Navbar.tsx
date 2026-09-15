@@ -1,70 +1,64 @@
-import Link from "next/link";
-import { Globe, Moon } from "lucide-react";
+"use client";
 
+import Link from "next/link";
+import Image from "next/image";
+
+import { LanguageSelector } from "@/components/layout/LanguageSelector";
+import { useLanguage } from "@/components/providers/LanguageProvider";
 import { NavbarMobileMenu } from "@/components/layout/NavbarMobileMenu";
-import { SearchBar } from "@/components/layout/SearchBar";
-import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { mainNavLinks } from "@/constants/navigation";
 
 export function Navbar() {
+  const { messages } = useLanguage();
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 shadow-sm shadow-black/[0.02] backdrop-blur-lg supports-backdrop-filter:bg-background/60">
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:gap-4 sm:px-6 lg:px-8">
+    <header className="relative sticky top-0 z-50 w-full bg-background/70 backdrop-blur-xl">
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-[#6C4FF6]/70 via-[#8A6BFA] to-[#31B86B]/70"
+      />
+
+      <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="shrink-0 text-lg font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80"
+          className="group flex shrink-0 items-center gap-2.5"
+          aria-label="Aurora home"
         >
-          Aurora
-        </Link>
+          <Image
+            src="/AuroraLogo.svg"
+            alt=""
+            width={32}
+            height={32}
+            className="transition-transform duration-300 group-hover:scale-105"
+          />
 
-        <div className="hidden min-w-0 flex-1 md:block lg:max-w-md xl:max-w-lg">
-          <SearchBar />
-        </div>
+          <span className="bg-linear-to-r from-[#6C4FF6] via-[#8A6BFA] to-[#31B86B] bg-clip-text text-lg font-semibold tracking-tight text-transparent">
+            Aurora
+          </span>
+        </Link>
 
         <nav
           aria-label="Main navigation"
-          className="ml-auto hidden items-center gap-0.5 md:flex lg:gap-1"
+          className="ml-auto hidden items-center gap-1 md:flex"
         >
           {mainNavLinks.map((link) => (
-            <Button
+            <Link
               key={link.href}
-              variant="ghost"
-              size="sm"
-              render={<Link href={link.href} />}
+              href={link.href}
+              className="inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
-              {link.label}
-            </Button>
+              {link.href === "/stores" && messages.Navbar.stores}
+              {link.href === "/categories" && messages.Navbar.categories}
+              {link.href === "/deals" && messages.Navbar.deals}
+            </Link>
           ))}
-
-          <div className="mx-1 hidden h-4 w-px bg-border lg:block" aria-hidden="true" />
-
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1.5"
-            aria-label="Select language"
-          >
-            <Globe aria-hidden="true" className="size-4" />
-            <span className="hidden lg:inline">EN</span>
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            aria-label="Toggle dark mode"
-          >
-            <Moon aria-hidden="true" />
-          </Button>
-
-          <Button
-            render={<Link href="/sign-in" />}
-            size="sm"
-            variant="outline"
-            className="ml-1"
-          >
-            Sign In
-          </Button>
         </nav>
+
+        <div className="ml-auto hidden items-center gap-1 md:flex">
+          <LanguageSelector />
+          <ThemeToggle />
+        </div>
 
         <div className="ml-auto md:hidden">
           <NavbarMobileMenu />

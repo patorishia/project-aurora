@@ -1,0 +1,43 @@
+{
+  "Navbar": {
+    "stores": "Lojas",
+    "categories": "Categorias",
+    "deals": "Ofertas",
+    "language": "Idioma"
+  },
+  "Home": {
+    "title": "Nunca mais pagues o preço total.",
+    "description": "Pesquisa cupões e ofertas das tuas lojas favoritas.",
+    "trendingStores": "Lojas em destaque"
+  },
+  "Footer": {
+    "platform": "Plataforma",
+    "resources": "Recursos",
+    "support": "Suporte",
+    "legal": "Legal",
+    "browseStores": "Ver lojas",
+    "browseCategories": "Ver categorias",
+    "latestCoupons": "Últimos cupões",
+    "popularDeals": "Ofertas populares",
+    "faq": "Perguntas frequentes",
+    "howCouponsWork": "Como funcionam os cupões",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "reportCoupon": "Comunicar um cupão",
+    "privacy": "Política de privacidade",
+    "terms": "Termos de serviço",
+    "cookies": "Política de cookies",
+    "description": "Encontra cupões e as melhores ofertas das principais lojas online.",
+    "copyright": "Todos os direitos reservados."
+  },
+  "Trust": {
+    "verifiedCoupons": "Cupões verificados",
+    "updatedDaily": "Atualizados diariamente",
+    "globalStores": "Lojas de todo o mundo"
+  },
+    "Search": {
+        "placeholder": "Pesquisar cupões, lojas, ofertas...",
+        "heroPlaceholder": "Pesquisar lojas (Nike, Amazon, Booking...)",
+        "ariaLabel": "Pesquisar cupões e ofertas"
+    }
+}

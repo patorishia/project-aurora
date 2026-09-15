@@ -1,0 +1,43 @@
+{
+    "Navbar": {
+        "stores": "Stores",
+        "categories": "Categories",
+        "deals": "Deals",
+        "language": "Language"
+    },
+    "Home": {
+        "title": "Never pay full price again.",
+        "description": "Search coupons and deals from your favorite stores.",
+        "trendingStores": "Trending stores"
+    },
+    "Footer": {
+        "platform": "Platform",
+        "resources": "Resources",
+        "support": "Support",
+        "legal": "Legal",
+        "browseStores": "Browse Stores",
+        "browseCategories": "Browse Categories",
+        "latestCoupons": "Latest Coupons",
+        "popularDeals": "Popular Deals",
+        "faq": "FAQ",
+        "howCouponsWork": "How Coupons Work",
+        "blog": "Blog",
+        "contact": "Contact",
+        "reportCoupon": "Report a Coupon",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "cookies": "Cookie Policy",
+        "description": "Find coupons and the best deals from top online stores.",
+        "copyright": "All rights reserved."
+    },
+    "Trust": {
+        "verifiedCoupons": "Verified coupons",
+        "updatedDaily": "Updated daily",
+        "globalStores": "Global stores"
+    },
+    "Search": {
+        "placeholder": "Search coupons, stores, deals...",
+        "heroPlaceholder": "Search stores (Nike, Amazon, Booking...)",
+        "ariaLabel": "Search coupons and deals"
+    }
+}
