@@ -8,15 +8,16 @@ datasource db {
 }
 
 model Store {
-  id        String   @id @default(cuid())
-  name      String
-  slug      String   @unique
-  logo      String?
-  website   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String   @id @default(cuid())
+  name             String
+  slug             String   @unique
+  logo             String?
+  website          String?
+  awinAdvertiserId Int?     @unique
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 
-  coupons   Coupon[]
+  coupons Coupon[]
 
   @@index([name])
 }
@@ -29,15 +30,19 @@ model Coupon {
   code        String?
   discount    String?
   url         String
+  trackingUrl String?
+  startsAt    DateTime?
   expiresAt   DateTime?
   active      Boolean   @default(true)
   verified    Boolean   @default(false)
   source      String?
+  sourceId    String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
-  store       Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
+  @@unique([source, sourceId])
   @@index([storeId])
   @@index([active])
   @@index([expiresAt])

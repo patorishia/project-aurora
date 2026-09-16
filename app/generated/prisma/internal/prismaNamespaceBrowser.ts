@@ -77,6 +77,7 @@ export const StoreScalarFieldEnum = {
   slug: 'slug',
   logo: 'logo',
   website: 'website',
+  awinAdvertiserId: 'awinAdvertiserId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -92,10 +93,13 @@ export const CouponScalarFieldEnum = {
   code: 'code',
   discount: 'discount',
   url: 'url',
+  trackingUrl: 'trackingUrl',
+  startsAt: 'startsAt',
   expiresAt: 'expiresAt',
   active: 'active',
   verified: 'verified',
   source: 'source',
+  sourceId: 'sourceId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

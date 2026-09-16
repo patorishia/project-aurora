@@ -20,8 +20,18 @@ export type StoreModel = runtime.Types.Result.DefaultSelection<Prisma.$StorePayl
 
 export type AggregateStore = {
   _count: StoreCountAggregateOutputType | null
+  _avg: StoreAvgAggregateOutputType | null
+  _sum: StoreSumAggregateOutputType | null
   _min: StoreMinAggregateOutputType | null
   _max: StoreMaxAggregateOutputType | null
+}
+
+export type StoreAvgAggregateOutputType = {
+  awinAdvertiserId: number | null
+}
+
+export type StoreSumAggregateOutputType = {
+  awinAdvertiserId: number | null
 }
 
 export type StoreMinAggregateOutputType = {
@@ -30,6 +40,7 @@ export type StoreMinAggregateOutputType = {
   slug: string | null
   logo: string | null
   website: string | null
+  awinAdvertiserId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -40,6 +51,7 @@ export type StoreMaxAggregateOutputType = {
   slug: string | null
   logo: string | null
   website: string | null
+  awinAdvertiserId: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -50,11 +62,20 @@ export type StoreCountAggregateOutputType = {
   slug: number
   logo: number
   website: number
+  awinAdvertiserId: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type StoreAvgAggregateInputType = {
+  awinAdvertiserId?: true
+}
+
+export type StoreSumAggregateInputType = {
+  awinAdvertiserId?: true
+}
 
 export type StoreMinAggregateInputType = {
   id?: true
@@ -62,6 +83,7 @@ export type StoreMinAggregateInputType = {
   slug?: true
   logo?: true
   website?: true
+  awinAdvertiserId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -72,6 +94,7 @@ export type StoreMaxAggregateInputType = {
   slug?: true
   logo?: true
   website?: true
+  awinAdvertiserId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -82,6 +105,7 @@ export type StoreCountAggregateInputType = {
   slug?: true
   logo?: true
   website?: true
+  awinAdvertiserId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -125,6 +149,18 @@ export type StoreAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: StoreAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: StoreSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: StoreMinAggregateInputType
@@ -155,6 +191,8 @@ export type StoreGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: StoreCountAggregateInputType | true
+  _avg?: StoreAvgAggregateInputType
+  _sum?: StoreSumAggregateInputType
   _min?: StoreMinAggregateInputType
   _max?: StoreMaxAggregateInputType
 }
@@ -165,9 +203,12 @@ export type StoreGroupByOutputType = {
   slug: string
   logo: string | null
   website: string | null
+  awinAdvertiserId: number | null
   createdAt: Date
   updatedAt: Date
   _count: StoreCountAggregateOutputType | null
+  _avg: StoreAvgAggregateOutputType | null
+  _sum: StoreSumAggregateOutputType | null
   _min: StoreMinAggregateOutputType | null
   _max: StoreMaxAggregateOutputType | null
 }
@@ -196,6 +237,7 @@ export type StoreWhereInput = {
   slug?: Prisma.StringFilter<"Store"> | string
   logo?: Prisma.StringNullableFilter<"Store"> | string | null
   website?: Prisma.StringNullableFilter<"Store"> | string | null
+  awinAdvertiserId?: Prisma.IntNullableFilter<"Store"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   coupons?: Prisma.CouponListRelationFilter
@@ -207,6 +249,7 @@ export type StoreOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   logo?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
+  awinAdvertiserId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   coupons?: Prisma.CouponOrderByRelationAggregateInput
@@ -215,6 +258,7 @@ export type StoreOrderByWithRelationInput = {
 export type StoreWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   slug?: string
+  awinAdvertiserId?: number
   AND?: Prisma.StoreWhereInput | Prisma.StoreWhereInput[]
   OR?: Prisma.StoreWhereInput[]
   NOT?: Prisma.StoreWhereInput | Prisma.StoreWhereInput[]
@@ -224,7 +268,7 @@ export type StoreWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Store"> | Date | string
   coupons?: Prisma.CouponListRelationFilter
-}, "id" | "slug">
+}, "id" | "slug" | "awinAdvertiserId">
 
 export type StoreOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -232,11 +276,14 @@ export type StoreOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   logo?: Prisma.SortOrderInput | Prisma.SortOrder
   website?: Prisma.SortOrderInput | Prisma.SortOrder
+  awinAdvertiserId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StoreCountOrderByAggregateInput
+  _avg?: Prisma.StoreAvgOrderByAggregateInput
   _max?: Prisma.StoreMaxOrderByAggregateInput
   _min?: Prisma.StoreMinOrderByAggregateInput
+  _sum?: Prisma.StoreSumOrderByAggregateInput
 }
 
 export type StoreScalarWhereWithAggregatesInput = {
@@ -248,6 +295,7 @@ export type StoreScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"Store"> | string
   logo?: Prisma.StringNullableWithAggregatesFilter<"Store"> | string | null
   website?: Prisma.StringNullableWithAggregatesFilter<"Store"> | string | null
+  awinAdvertiserId?: Prisma.IntNullableWithAggregatesFilter<"Store"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Store"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Store"> | Date | string
 }
@@ -258,6 +306,7 @@ export type StoreCreateInput = {
   slug: string
   logo?: string | null
   website?: string | null
+  awinAdvertiserId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   coupons?: Prisma.CouponCreateNestedManyWithoutStoreInput
@@ -269,6 +318,7 @@ export type StoreUncheckedCreateInput = {
   slug: string
   logo?: string | null
   website?: string | null
+  awinAdvertiserId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
   coupons?: Prisma.CouponUncheckedCreateNestedManyWithoutStoreInput
@@ -280,6 +330,7 @@ export type StoreUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupons?: Prisma.CouponUpdateManyWithoutStoreNestedInput
@@ -291,6 +342,7 @@ export type StoreUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   coupons?: Prisma.CouponUncheckedUpdateManyWithoutStoreNestedInput
@@ -302,6 +354,7 @@ export type StoreCreateManyInput = {
   slug: string
   logo?: string | null
   website?: string | null
+  awinAdvertiserId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -312,6 +365,7 @@ export type StoreUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -322,6 +376,7 @@ export type StoreUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -332,8 +387,13 @@ export type StoreCountOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  awinAdvertiserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type StoreAvgOrderByAggregateInput = {
+  awinAdvertiserId?: Prisma.SortOrder
 }
 
 export type StoreMaxOrderByAggregateInput = {
@@ -342,6 +402,7 @@ export type StoreMaxOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  awinAdvertiserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -352,8 +413,13 @@ export type StoreMinOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   logo?: Prisma.SortOrder
   website?: Prisma.SortOrder
+  awinAdvertiserId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type StoreSumOrderByAggregateInput = {
+  awinAdvertiserId?: Prisma.SortOrder
 }
 
 export type StoreScalarRelationFilter = {
@@ -367,6 +433,14 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -393,6 +467,7 @@ export type StoreCreateWithoutCouponsInput = {
   slug: string
   logo?: string | null
   website?: string | null
+  awinAdvertiserId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -403,6 +478,7 @@ export type StoreUncheckedCreateWithoutCouponsInput = {
   slug: string
   logo?: string | null
   website?: string | null
+  awinAdvertiserId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -429,6 +505,7 @@ export type StoreUpdateWithoutCouponsInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -439,6 +516,7 @@ export type StoreUncheckedUpdateWithoutCouponsInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  awinAdvertiserId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -480,6 +558,7 @@ export type StoreSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   slug?: boolean
   logo?: boolean
   website?: boolean
+  awinAdvertiserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   coupons?: boolean | Prisma.Store$couponsArgs<ExtArgs>
@@ -492,6 +571,7 @@ export type StoreSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   slug?: boolean
   logo?: boolean
   website?: boolean
+  awinAdvertiserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["store"]>
@@ -502,6 +582,7 @@ export type StoreSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   slug?: boolean
   logo?: boolean
   website?: boolean
+  awinAdvertiserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["store"]>
@@ -512,11 +593,12 @@ export type StoreSelectScalar = {
   slug?: boolean
   logo?: boolean
   website?: boolean
+  awinAdvertiserId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "website" | "createdAt" | "updatedAt", ExtArgs["result"]["store"]>
+export type StoreOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "website" | "awinAdvertiserId" | "createdAt" | "updatedAt", ExtArgs["result"]["store"]>
 export type StoreInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   coupons?: boolean | Prisma.Store$couponsArgs<ExtArgs>
   _count?: boolean | Prisma.StoreCountOutputTypeDefaultArgs<ExtArgs>
@@ -535,6 +617,7 @@ export type $StorePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     slug: string
     logo: string | null
     website: string | null
+    awinAdvertiserId: number | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["store"]>
@@ -966,6 +1049,7 @@ export interface StoreFieldRefs {
   readonly slug: Prisma.FieldRef<"Store", 'String'>
   readonly logo: Prisma.FieldRef<"Store", 'String'>
   readonly website: Prisma.FieldRef<"Store", 'String'>
+  readonly awinAdvertiserId: Prisma.FieldRef<"Store", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Store", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Store", 'DateTime'>
 }
